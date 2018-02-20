@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lab2</title>
+</head>
+<body>
+	<style>
+		#table {
+			margin-bottom: 30px;
+		}
+		#table tr td input {
+			text-align: center;
+			padding: 2px;
+		}
+
+		button {
+			cursor: pointer;
+			border: none;
+			padding: 20px 70px;
+			color: #fff;
+			background: green;
+			margin-bottom: 15px;
+		}
+
+		a {
+			display: block;
+			width: 200px;
+			padding: 18px 21px;
+			color: #fff;
+			background: #ff0000;
+			text-decoration: none;
+			text-align: center;
+		}
+
+		#train-sign {
+			padding: 15px;
+			width: 120px;
+			border: 1px solid green;
+		}
+	</style>
+
+	<table id="table">
+		<thead>
+			<tr>
+				<th>*</th>
+				<th>*</th>
+				<th>*</th>
+				<th>*</th>
+				<th>*</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+			</tr>
+			<tr><td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+			</tr>
+			<tr>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+			</tr>
+			<tr>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+				<td><input type="text" size="1" maxlength="1"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<button id="button">Train and Identify</button>
+	<input type="text" id="train-sign" placeholder="input sign for train">
+	<a href="#" onClick="window.location.reload( true );">Clear</a>
+
+	<!-- jQuery -->
+	<script src="jquery.min.js"></script>
+
+	<!-- my scripts -->
+	<script src="neuronHandler.js"></script>
+	<script src="neuronProcessor.js"></script>
+
+	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
