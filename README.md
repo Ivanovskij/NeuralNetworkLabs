@@ -8,5 +8,5 @@ Univer labs. Subject - Artificial Intelligence
 Результат зависит от значения пороговой функции (bias)  
 
 ###### Image usage
-[single_layer_perceptron] https://pbs.twimg.com/media/DWgARDNWsAA1Cxf.jpg:large
+![single_layer_perceptron](https://pbs.twimg.com/media/DWgARDNWsAA1Cxf.jpg:large)
 
