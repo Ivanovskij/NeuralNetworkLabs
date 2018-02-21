@@ -18,7 +18,7 @@ $("#button").on("click", function() {
 
 	var signOriginal = $('#train-sign').val();
 	// identify sign
-	handle(signOriginal, signToIndentify);
+	handle1(signOriginal, signToIndentify);
 
 });
 

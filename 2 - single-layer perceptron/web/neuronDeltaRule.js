@@ -32,7 +32,7 @@ var listSigns = [ signI, signV, signA, signN ];
 var lengthListSigns = listSigns.length - 1;
 
 //  Порог функции активации
-var bias = 7;
+var bias = 4;
 
 //  Инициализация весов сети нулем, 
 // происходит автоматически (см порядок инициализации переменных)
@@ -40,9 +40,7 @@ var bias = 7;
 var weights = new Array(20);
 var lengthWeights = weights.length - 1;
 
-var numTrainings = 10000;
-
-function handle(signOriginal, signToIndentify) {
+function handle1(signOriginal, signToIndentify) {
 	for (var i = 0; i <= lengthWeights; i++) {
 		weights[i] = 0;
 	}
@@ -75,24 +73,44 @@ function handle(signOriginal, signToIndentify) {
 		outSign += weights[i] + ' ';
 	}
 
+	alert(outSign);
 	alert('This is ' + signOriginal + ' ' + proceed(signToIndentify, weights, bias));
 }
 
 
 // Тренировка сети
 function training(inputSignPosition) {
-	for (var i = 0; i <= numTrainings; i++) {
-		var option = getRandomInt(0, lengthListSigns);
+	var globalError = 0;
 
-		if (option != inputSignPosition) {
-			if (proceed(listSigns[option])) {
-				decrease(listSigns[option]);
+	var outProceed = 0,
+		tmpError = 0;
+
+	var countIter = 0;
+	var currentSign = listSigns[inputSignPosition];
+
+	do {
+		globalError = 0;
+
+		for (var i = 0; i < currentSign.length; i++) {
+			var option = getRandomInt(0, lengthListSigns);
+
+			if (option != inputSignPosition) {
+				outProceed = proceed(listSigns[option]);
+				// правило хебба, 
+				// вес либо увеличится, либо уменьшится
+				tmpError = currentSign[i] - outProceed;
+				globalError += Math.abs(tmpError);
+
+				for (var j = 0; j <= lengthWeights; j++) {
+					weights[j] += 0.1 * tmpError * currentSign[j];
+				}
 			}
 		}
-		else if (!proceed(listSigns[option])) {
-			increase(listSigns[option]);
-		}
-	}
+
+		countIter++;
+	} while (globalError != 0);
+
+	alert('Neuron trained for ' + countIter + ' iteration(s)!');
 }
 
 //	проверка на то, 
@@ -111,33 +129,6 @@ function proceed(sign) {
 	// Нет - сеть думает, что это другая буква)
 	return net >= bias;
 }
-
-//	Уменьшение значений весов, 
-// если сеть ошиблась и выдала 1
-function decrease(sign) {
-	for (var i = 0; i <= lengthWeights; i++) {
-		//	Возбужденный ли вход
-		if (sign[i] == 1) {
-			//	Уменьшаем связанный 
-			//	с ним вес на единицу
-			weights[i] -= 1;
-		}
-	}
-}
-
-//	Увеличение значений весов, 
-// если сеть ошиблась и выдала 0
-function increase(sign) {
-	for (var i = 0; i <= lengthWeights; i++) {
-		//	Возбужденный ли вход
-		if (sign[i] == 1) {
-			//	Увеливаем связанный 
-			//	с ним вес на единицу
-			weights[i] += 1;
-		}
-	}
-}
-
 
 /**
  * Returns a random integer between min (inclusive) and max (inclusive)
